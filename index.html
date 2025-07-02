@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLASHLIFE - انضم إلى طاقم النخبة</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --navy-blue: #383636;
+            --sky-blue: #20b345;
+            --light-blue: #e3f2fd;
+            --white: #272727;
+            --dark-text: #51ff00;
+            --gradient: linear-gradient(135deg, var(--navy-blue), var(--sky-blue));
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            overflow-x: hidden;
+            background: #f8fbff;
+        }
+        
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--gradient);
+        }
+        
+        .bg-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 50%;
+            right: 15%;
+            animation-delay: -2s;
+        }
+        
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 30%;
+            left: 20%;
+            animation-delay: -4s;
+        }
+        
+        .shape:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            top: 70%;
+            right: 30%;
+            animation-delay: -1s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(45deg, var(--sky-green), #00ff40);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(72, 255, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(21, 252, 0, 0.6);
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            position: relative;
+            background: white;
+        }z
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--sky-green);
+            border-radius: 2px;
+        }
+        
+        /* Intro Section */
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--dark-text);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+        
+        /* Roles Grid */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .role-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .role-card:nth-child(1) { animation-delay: 0.1s; }
+        .role-card:nth-child(2) { animation-delay: 0.2s; }
+        .role-card:nth-child(3) { animation-delay: 0.3s; }
+        .role-card:nth-child(4) { animation-delay: 0.4s; }
+        .role-card:nth-child(5) { animation-delay: 0.5s; }
+        .role-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        .role-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(26, 35, 126, 0.2);
+        }
+        
+        .role-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+        }
+        
+        .role-icon {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .role-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--navy-green);
+            margin-bottom: 15px;
+        }
+        
+        .role-desc {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* Application Form Modal */
+        .form-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .form-modal {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            color: var(--navy-green);
+        }
+        
+        .form-title {
+            text-align: center;
+            color: var(--navy-green);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--navy-blue);
+            font-weight: 500;
+        }
+        
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f9f9f9;
+        }
+        
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--sky-green);
+            background: white;
+            box-shadow: 0 0 15px rgba(66, 165, 245, 0.2);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 35, 126, 0.3);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: #e8f5e8;
+            color: #00ff0d;
+            border-radius: 12px;
+            margin-top: 20px;
+            border: 2px solid #4caf50;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .roles-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .form-modal {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+        }
+        
+        /* Scroll animations */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="bg-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>انضم إلى طاقم FLASHLIFE</h1>
+            <p>نحن لا نبحث عن عدد... بل عن نخبة تليق بنا.</p>
+            <a href="#" class="cta-button" onclick="openForm()">أرسل طلبك الآن</a>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section class="section">
+        <div class="container">
+            <p class="intro-text scroll-fade">
+                FLASHLIFE هو خادم مخصص للمطورين الجادين في مجال SA-MP و Discord Bots. نُعيد بناء الخادم لنكون المرجع الأفضل، وندعو الكفاءات فقط للانضمام.
+            </p>
+        </div>
+    </section>
+
+    <!-- Roles Section -->
+    <section class="section" style="background: #f8fbff;">
+        <div class="container">
+            <h2 class="section-title scroll-fade">الأقسام المتاحة</h2>
+            <div class="roles-grid">
+                <div class="role-card scroll-fade">
+                    <div class="role-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3 class="role-title">مبرمج بوتات ديسكورد</h3>
+                    <p class="role-desc">تطوير وبرمجة بوتات ديسكورد متقدمة باستخدام أحدث التقنيات والمكتبات البرمجية.</p>
+                </div>
+                
+                <div class="role-card scroll-fade">
+                    <div class="role-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="role-title">مطور باونو (PAWN)</h3>
+                    <p class="role-desc">برمجة وتطوير سكريبتات SA-MP باستخدام لغة PAWN مع خبرة في الأنظمة المتقدمة.</p>
+                </div>
+                
+                <div class="role-card scroll-fade">
+                    <div class="role-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3 class="role-title">إدارة داخلية وتنظيم</h3>
+                    <p class="role-desc">إدارة الخادم والأعضاء، تنظيم الفعاليات، والإشراف على النشاطات اليومية.</p>
+                </div>
+                
+                <div class="role-card scroll-fade">
+                    <div class="role-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3 class="role-title">ترويج وشراكات</h3>
+                    <p class="role-desc">تسويق الخادم، إنشاء الشراكات الاستراتيجية، وإدارة وسائل التواصل الاجتماعي.</p>
+                </div>
+                
+                <div class="role-card scroll-fade">
+                    <div class="role-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3 class="role-title">طاقم صوتي</h3>
+                    <p class="role-desc">إدارة القنوات الصوتية، تقديم الدعم الصوتي، وتنظيم الجلسات التفاعلية.</p>
+                </div>
+                
+                <div class="role-card scroll-fade">
+                    <div class="role-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3 class="role-title">بائعين خدمات برمجية</h3>
+                    <p class="role-desc">تقديم خدمات البرمجة والتطوير للأعضاء مع ضمان الجودة والاحترافية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form Modal -->
+    <div class="form-overlay" id="formOverlay">
+        <div class="form-modal">
+            <button class="close-btn" onclick="closeForm()">&times;</button>
+            <h2 class="form-title">طلب انضمام</h2>
+            <form id="applicationForm">
+                <div class="form-group">
+                    <label class="form-label">الاسم *</label>
+                    <input type="text" class="form-input" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">العمر (اختياري)</label>
+                    <input type="number" class="form-input" name="age" min="13" max="60">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">المهارات أو الخبرات *</label>
+                    <textarea class="form-textarea" name="skills" required placeholder="اذكر مهاراتك وخبراتك في البرمجة والتطوير..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">القسم المراد التقديم له *</label>
+                    <select class="form-select" name="department" required>
+                        <option value="">اختر القسم</option>
+                        <option value="discord-bots">مبرمج بوتات ديسكورد</option>
+                        <option value="pawn-developer">مطور باونو (PAWN)</option>
+                        <option value="management">إدارة داخلية وتنظيم</option>
+                        <option value="promotion">ترويج وشراكات</option>
+                        <option value="voice-staff">طاقم صوتي</option>
+                        <option value="services">بائعين خدمات برمجية</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">رابط تواصل (ديسكورد) *</label>
+                    <input type="text" class="form-input" name="discord" required placeholder="username#1234 أو Discord ID">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">ملاحظة إضافية</label>
+                    <textarea class="form-textarea" name="notes" placeholder="أي معلومات إضافية تود إضافتها..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">إرسال الطلب</button>
+                
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    تم استلام طلبك، وسيتم مراجعته خلال أقرب وقت.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Button click sound
+        const clickSound = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmAYBTGH0O7QdSEFLHzM7+GHURE');
+        
+let userIP = 'Unknown';
+
+async function getUserIP() {
+    try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        userIP = data.ip;
+    } catch {
+        userIP = 'Unavailable';
+    }
+}
+getUserIP();
+
+        // Modal functions
+        function openForm() {
+            clickSound.play().catch(() => {});
+            document.getElementById('formOverlay').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeForm() {
+            document.getElementById('formOverlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+        
+        // Form submission
+        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            clickSound.play().catch(() => {});
+            
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'جاري الإرسال...';
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                age: formData.get('age') || 'غير محدد',
+                skills: formData.get('skills'),
+                department: formData.get('department'),
+                discord: formData.get('discord'),
+                notes: formData.get('notes') || 'لا توجد ملاحظات',
+                ip: userIP,
+                timestamp: new Date().toLocaleString('ar-EG')
+            };
+            
+            // Replace with your Discord webhook URL
+            const webhookURL = 'https://discord.com/api/webhooks/1389947635607015535/qQcUhfzDxIXLzCi5wOxBnEahVgAeFntC5zSbfKXvHZz5zgCrE7oowTouVevweLp-f64G';
+            
+            const embed = {
+                title: '🎯 طلب انضمام جديد - FLASHLIFE',
+                color: 0x1a237e,
+                fields: [
+                    { name: '👤 الاسم', value: data.name, inline: true },
+                    { name: '🎂 العمر', value: data.age, inline: true },
+                    { name: '🌐 عنوان IP', value: data.ip, inline: true },
+                    { name: '🛠️ المهارات والخبرات', value: data.skills, inline: false },
+                    { name: '📋 القسم المطلوب', value: getDepartmentName(data.department), inline: true },
+                    { name: '💬 رابط الديسكورد', value: data.discord, inline: true },
+                    { name: '📝 ملاحظات إضافية', value: data.notes, inline: false }
+                ],
+                footer: { text: 'FLASHLIFE Application System' },
+                timestamp: new Date().toISOString()
+            };
+            
+            try {
+                // Simulate webhook call (replace with actual webhook URL)
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'block';
+                    this.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    
+                    setTimeout(() => {
+                        closeForm();
+                    }, 3000);
+                }, 1500);
+                
+                // Uncomment and configure for actual webhook
+            
+                const response = await fetch(webhookURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        embeds: [embed]
+                    })
+                });
+                
+                if (response.ok) {
+                    document.getElementById('successMessage').style.display = 'block';
+                    this.reset();
+                    setTimeout(() => closeForm(), 3000);
+                } else {
+                    throw new Error('Failed to send');
+                }
+                
+            } catch (error) {
+                alert('حدث خطأ في إرسال الطلب. يرجى المحاولة مرة أخرى.');
+            }
+            
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        });
+        
+        function getDepartmentName(value) {
+            const departments = {
+                'discord-bots': 'مبرمج بوتات ديسكورد',
+                'pawn-developer': 'مطور باونو (PAWN)',
+                'management': 'إدارة داخلية وتنظيم',
+                'promotion': 'ترويج وشراكات',
+                'voice-staff': 'طاقم صوتي',
+                'services': 'بائعين خدمات برمجية'
+            };
+            return departments[value] || value;
+        }
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.scroll-fade').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Close modal on outside click
+        document.getElementById('formOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeForm();
+            }
+        });
+        
+        // Add glow effect to CTA button
+        document.querySelector('.cta-button').addEventListener('mouseenter', function() {
+            this.style.boxShadow = '0 12px 35px rgba(66, 165, 245, 0.6), 0 0 30px rgba(66, 165, 245, 0.4)';
+        });
+        
+        document.querySelector('.cta-button').addEventListener('mouseleave', function() {
+            this.style.boxShadow = '0 8px 25px rgba(66, 165, 245, 0.4)';
+        });
+</script>
+
+</script>
+</body>
+</html>
