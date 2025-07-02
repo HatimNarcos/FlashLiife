@@ -1,0 +1,150 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #000;
+  color: white;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Landing Section */
+.landing {
+  height: 100vh;
+  background: linear-gradient(120deg, #00ffff, #002233, #000);
+  background-size: 200% 200%;
+  animation: animateBg 12s ease infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.intro h1 {
+  font-size: 36px;
+  color: #00ffff;
+  margin-bottom: 15px;
+}
+
+.intro h1 .flash {
+  color: #fff;
+  text-shadow: 0 0 8px #0ff, 0 0 20px #0ff;
+}
+
+.intro p {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+.cta-button {
+  padding: 14px 35px;
+  background: linear-gradient(90deg, #00ffff, #00cccc);
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  transition: 0.4s ease;
+  box-shadow: 0 0 15px #00ffff;
+}
+
+.cta-button:hover {
+  background: linear-gradient(90deg, #00cccc, #00ffff);
+  box-shadow: 0 0 25px #00ffff;
+  transform: scale(1.05);
+}
+
+/* Form Full Page */
+.form-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px 20px;
+  max-width: 600px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+  border-radius: 20px;
+}
+
+.form-page h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 26px;
+}
+
+form input, form textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(255,255,255,0.1);
+  color: white;
+  resize: none;
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #00ffff;
+  border: none;
+  border-radius: 8px;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+form button:hover {
+  background-color: #00cccc;
+}
+
+/* خلفية متحركة بزاف */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #00ffff55 0%, #001e2d 80%, #000000 100%);
+  background-size: 600% 600%;
+  animation: intenseMove 10s ease-in-out infinite;
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0.8;
+}
+
+@keyframes intenseMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+

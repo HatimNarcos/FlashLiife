@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>طلب الإنضمام - FLASHLIFE</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="form-page">
+    <h2>🌟 طلب الإنضمام لفريق FLASHLIFE</h2>
+    <form id="staffForm">
+      <input type="text" id="name" placeholder="الإسم الكامل" required />
+      <input type="number" id="age" placeholder="السن" required />
+      <input type="text" id="discord" placeholder="إسمك على ديسكورد (User#1234)" required />
+      <input type="text" id="userId" placeholder="ID الخاص بك" required /> <!-- Added field for ID -->
+      <textarea id="experience" placeholder="هل لديك تجربة سابقة كستاف؟" required></textarea>
+      <textarea id="reason" placeholder="علاش بغيتي تولي ستاف؟" required></textarea>
+      <button type="submit">إرسال الطلب ✅</button>
+    </form>
+  </div>
+  <div class="background"></div>
+
+  <script>
+    const webhookURL = "https://discord.com/api/webhooks/1389947638681698424/cgJdBVbX1Vt4tEplOdu2PI--7t2hxK2T7oC8H4u06EzoCZeIbcudy_WxMY55f8JLTtAP"; // ← بدلو بـ رابط Webhook ديالك
+
+    document.getElementById("staffForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const age = document.getElementById("age").value;
+      const discord = document.getElementById("discord").value;
+      const userId = document.getElementById("userId").value;  // Get the user ID
+      const experience = document.getElementById("experience").value;
+      const reason = document.getElementById("reason").value;
+
+      const content = `📥 **طلب انضمام جديد لفريق FLASHLIFE**\n\n👤 **الإسم:** ${name}\n🎂 **العمر:** ${age}\n💬 **ديسكورد:** ${discord}\n🆔 **ID:** ${userId}\n📌 **تجربة سابقة:**\n${experience}\n\n🎯 **سبب الإنضمام:**\n${reason}`;
+
+      try {
+        await fetch(webhookURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ content: content })
+        });
+        alert("✅ تم إرسال الطلب بنجاح!");
+        document.getElementById("staffForm").reset();
+      } catch (err) {
+        alert("❌ وقع خطأ أثناء الإرسال!");
+      }
+    });
+  </script>
+</body>
+</html>
